@@ -32,7 +32,7 @@ class Connect
                     self::PASSWORD,
                     self::OPTIONS
                 );
-                echo "<h1>Conectado com sucesso.</h1>";
+                echo "<h1>Conectado com sucesso!</h1>";
             } catch (PDOException $E){
                 die("<h1>Deu erro no banco de dados...</h1>");
             }
