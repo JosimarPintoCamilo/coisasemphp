@@ -19,16 +19,15 @@ echo "<h1>Como inserir no banco?</h1>";
  */
 
 $sql = "
-    INSERT INTO users (first_name, last_name, email, document) 
-    values ('Josimar','Camilo','jo@gmail.com','123456');
+    INSERT INTO users (first_name, last_name, email, document)
+VALUES
+	('Robson','Santos','robson1@email.com.br',NULL);
 ";
 
 try {
     echo "<pre>";
     var_dump(
-    //$bancoDados->exec($sqlInsert),
-        $bancoDados->query($sql),
-        $bancoDados->lastInsertId()
+        $bancoDados->query($sql)
     );
     echo "</pre>";
 

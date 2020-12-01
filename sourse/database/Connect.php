@@ -8,41 +8,42 @@ use \PDOException;
 
 class Connect
 {
-    const HOST = "localhost";
-    const DBNAME = "upinside";
-    const USER = "root";
-    const PASSWORD = "";
+    const HOST = "ec2-52-204-232-46.compute-1.amazonaws.com";
+    const PORT = "5432";
+    const DBNAME = "dror30uor1rib";
+    const USER_NAME = "jaepvlubbonhcv";
+    const PASSWORD = "028b7d2ffcd22ed33666231f57018a4bd88a728640de14a93db09319cdb96296";
+
 
     const OPTIONS = [
-        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //todo erro que acontecer no pdo será convertido para esse tipo
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, //converta qualquer resultado de pesquisa para objeto
-        PDO::ATTR_CASE => PDO::CASE_NATURAL //conversao de nomes de colunas
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+        PDO::ATTR_CASE => PDO::CASE_NATURAL
     ];
 
     private static $instance;
 
     public static function getInstance()
     {
-        if(empty(self::$instance)){
+        if (empty(self::$instance)) {
             try {
-                self::$instance = new PDO(
-                    "mysql:host=".self::HOST.";dbname=".self::DBNAME,
-                    self::USER,
+                self::$instance = new PDO('pgsql:dbname=' . self::DBNAME . ' host=' . self::HOST,
+                    self::USER_NAME,
                     self::PASSWORD,
                     self::OPTIONS
                 );
-                echo "<h1>Conectado com sucesso!</h1>";
-            } catch (PDOException $E){
-                die("<h1>Deu erro no banco de dados...</h1>");
+                echo "<h1>Conexão com banco realizada!</h1>";
+            } catch (PDOException $E) {
+                die("<h1>kkkkkk Deu erro no banco de dados...</h1>");
             }
         }
         return self::$instance;
     }
 
-    final private function  __construct()
+    final private function __construct()
     {
     }
+
     final private function __clone()
     {
     }
