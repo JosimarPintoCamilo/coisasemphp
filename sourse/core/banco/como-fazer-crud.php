@@ -1,8 +1,8 @@
 <?php
 
-require __DIR__ . "/sourse/autoload.php";
+require __DIR__ . "./../../autoload.php";
 
-use Source\Database\Connect;
+use Source\Core\Banco\Connect;
 
 $bancoDados = Connect::getInstance();
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Source\Database;
+namespace Source\Core\Banco;
 
 use \PDO;
 use \PDOException;
@@ -8,14 +8,15 @@ use \PDOException;
 
 class Connect
 {
-    const HOST = "ec2-52-204-232-46.compute-1.amazonaws.com";
-    const PORT = "5432";
-    const DBNAME = "dror30uor1rib";
-    const USER_NAME = "jaepvlubbonhcv";
-    const PASSWORD = "028b7d2ffcd22ed33666231f57018a4bd88a728640de14a93db09319cdb96296";
+    const HOST = "localhost";
+    const PORT = "3306";
+    const DBNAME = "upinside";
+    const USER_NAME = "root";
+    const PASSWORD = "";
 
 
     const OPTIONS = [
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
         PDO::ATTR_CASE => PDO::CASE_NATURAL
@@ -23,18 +24,18 @@ class Connect
 
     private static $instance;
 
-    public static function getInstance()
+    public static function getInstance(): PDO
     {
         if (empty(self::$instance)) {
             try {
-                self::$instance = new PDO('pgsql:dbname=' . self::DBNAME . ' host=' . self::HOST,
+                self::$instance = new PDO('mysql:host=' . self::HOST     . ';dbname=' . self::DBNAME,
                     self::USER_NAME,
                     self::PASSWORD,
                     self::OPTIONS
                 );
                 echo "<h1>Conexão com banco realizada!</h1>";
             } catch (PDOException $E) {
-                die("<h1>kkkkkk Deu erro no banco de dados...</h1>");
+                die("<h1>Deu erro na conexao com o banco de dados...</h1>");
             }
         }
         return self::$instance;
