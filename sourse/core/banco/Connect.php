@@ -8,11 +8,10 @@ use \PDOException;
 
 class Connect
 {
-    const HOST = "localhost";
-    const PORT = "3306";
-    const DBNAME = "upinside";
-    const USER_NAME = "root";
-    const PASSWORD = "";
+    const HOST = CONF_DB_HOST;
+    const DBNAME = CONF_DB_NAME;
+    const USER_NAME = CONF_DB_USER;
+    const PASSWORD = CONF_DB_PASS;
 
 
     const OPTIONS = [
@@ -28,7 +27,7 @@ class Connect
     {
         if (empty(self::$instance)) {
             try {
-                self::$instance = new PDO('mysql:host=' . self::HOST     . ';dbname=' . self::DBNAME,
+                self::$instance = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME,
                     self::USER_NAME,
                     self::PASSWORD,
                     self::OPTIONS
