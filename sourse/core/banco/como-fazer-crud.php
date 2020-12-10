@@ -2,9 +2,9 @@
 
 require __DIR__ . "./../../autoload.php";
 
-use Source\Core\Banco\Connect;
+use Source\Core\Banco\Conexao;
 
-$bancoDados = Connect::getInstance();
+$bancoDados = Conexao::getInstance();
 
 echo "<pre>";
 var_dump(

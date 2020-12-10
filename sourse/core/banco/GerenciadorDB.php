@@ -3,7 +3,7 @@
 
 namespace Source\Core\Banco;
 
-use Source\Core\Banco\Connect;
+use Source\Core\Banco\Conexao;
 
 class GerenciadorDB
 {
@@ -27,7 +27,7 @@ class GerenciadorDB
 
     public function __construct()
     {
-        $this->conexao = Connect::getInstance();
+        $this->conexao = Conexao::getInstance();
     }
 
     public function executeEscalar()

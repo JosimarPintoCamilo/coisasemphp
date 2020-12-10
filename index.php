@@ -4,17 +4,11 @@ require __DIR__ . "/sourse/autoload.php";
 
 echo "<pre>";
 
-$banco = \Source\Core\Banco\Connect::getInstance();
-
-$usuario = $banco->prepare("select count(id) from users;");
-
-var_dump($usuario);
-
-//$usuario->bindValue(":num", 3, PDO::PARAM_INT);
-
-//var_dump($usuario->queryString);
+echo "<br><br>";
+$conexao = new \Source\Core\Banco\UserRepository;
 
 
-var_dump($usuario->execute(), $usuario->fetch());
+$conexao->buscar(2);
+
 
 echo "</pre>";

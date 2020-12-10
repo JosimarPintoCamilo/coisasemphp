@@ -1,10 +1,10 @@
 <?php
 
+
 namespace Source\Core\Banco;
 
 use \PDO;
 use \PDOException;
-
 
 class Connect
 {
@@ -13,7 +13,6 @@ class Connect
     const USER_NAME = CONF_DB_USER;
     const PASSWORD = CONF_DB_PASS;
 
-
     const OPTIONS = [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -21,22 +20,19 @@ class Connect
         PDO::ATTR_CASE => PDO::CASE_NATURAL
     ];
 
-    private static $instance;
+    private static \PDO $instance;
 
     public static function getInstance(): PDO
     {
         if (empty(self::$instance)) {
-            try {
-                self::$instance = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME,
-                    self::USER_NAME,
-                    self::PASSWORD,
-                    self::OPTIONS
-                );
-                echo "<h1>Conexão com banco realizada!</h1>";
-            } catch (PDOException $E) {
-                die("<h1>Deu erro na conexao com o banco de dados...</h1>");
-            }
+
+            self::$instance = new PDO('mysql:host=' . self::HOST . ';dbname=' . self::DBNAME,
+                self::USER_NAME,
+                self::PASSWORD,
+                self::OPTIONS
+            );
         }
+        echo "Conectado";
         return self::$instance;
     }
 
@@ -47,5 +43,4 @@ class Connect
     final private function __clone()
     {
     }
-
 }
