@@ -6,7 +6,7 @@ namespace Source\Core\Banco;
 use \PDO;
 use \PDOException;
 
-class Connect
+class ConnectMySql
 {
     const HOST = CONF_DB_HOST;
     const DBNAME = CONF_DB_NAME;
@@ -34,13 +34,5 @@ class Connect
         }
         echo "Conectado";
         return self::$instance;
-    }
-
-    final private function __construct()
-    {
-    }
-
-    final private function __clone()
-    {
     }
 }

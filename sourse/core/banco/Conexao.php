@@ -27,7 +27,7 @@ class Conexao
         return $stmt;
     }
 
-    public function execute(): PDOStatement
+    public function execute(): \PDOStatement
     {
         $this->statement->execute();
         $var = $this->statement;
@@ -36,7 +36,7 @@ class Conexao
 
     public function __construct()
     {
-        $this->conexao = Connect::getInstance();
+        $this->conexao = ConnectMySql::getInstance();
     }
 
 }

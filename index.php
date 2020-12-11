@@ -8,7 +8,13 @@ echo "<br><br>";
 $conexao = new \Source\Core\Banco\UserRepository;
 
 
-$conexao->buscar(2);
+$usuario = $conexao->buscar(2);
+var_dump(
+    $usuario,
+    $usuario->getNome(),
+    $usuario->getEmail(),
+    $usuario->getDocumento()
+);
 
 
 echo "</pre>";
