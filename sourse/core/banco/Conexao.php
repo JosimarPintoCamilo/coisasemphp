@@ -12,7 +12,7 @@ class Conexao
     private \PDOStatement $statement;
 
 
-    public function prepare(string $sql, string $parametros = null): \PDOStatement
+    public function prepare(string $sql, string $parametros = null): Conexao
     {
         $stmt = $this->conexao->prepare($sql);
 
@@ -24,14 +24,15 @@ class Conexao
             }
         }
 
-        return $stmt;
+        $this->statement = $stmt;
+        return $this;
     }
 
     public function execute(): \PDOStatement
     {
         $this->statement->execute();
-        $var = $this->statement;
-        return $var;
+
+        return $this->statement;
     }
 
     public function __construct()

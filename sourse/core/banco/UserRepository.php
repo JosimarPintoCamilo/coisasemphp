@@ -19,10 +19,9 @@ class UserRepository
 
     public function buscar(int $id): Usuario
     {
-        $sql = "select * from users where id = 2";
+        $sql = "select * from users where id = :id";
         $paramentros = "id={$id}";
-        $stmt = $this->conexao->prepare($sql);
-        $stmt->execute();
+        $stmt = $this->conexao->prepare($sql, $paramentros)->execute();
 
         return $stmt->fetchObject(Usuario::class);
     }
