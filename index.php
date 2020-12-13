@@ -7,31 +7,18 @@ use Source\Model\Repository\UsuarioRepository;
 
 echo "<pre>";
 
-echo "<br><br>";
-$UsuarioRepository = new UsuarioRepository();
+$session = new \Source\Core\Session();
+$session->inserir("usuario", 22);
+$session->inserir("cidade", "periquito");
+$session->regenerar();
 
+$user = (new UsuarioRepository())->buscar(1);
 
-$usuario = $UsuarioRepository->buscar(2);
+$session->inserir("usuario", $user);
+
 var_dump(
-    $usuario,
-    $usuario->getNome(),
-    $usuario->getEmail(),
-    $usuario->getDocumento()
+    $session->getSession()->cidade,
+    $session->usuario()
 );
-echo "<br>";
-$usuario = $UsuarioRepository->buscarPeloEmail("josimarifmg@gmail.com");
-var_dump(
-    $usuario->getNome(),
-    $usuario->getEmail()
-);
-
-echo "<br><br>";
-$usuarios = $UsuarioRepository->buscarTodos();
-
-/** @var Usuario $usuario */
-foreach ($usuarios as $usuario){
-    var_dump($usuario->getNome());
-}
-
 
 echo "</pre>";
