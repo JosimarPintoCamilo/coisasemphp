@@ -18,14 +18,6 @@ class Usuario
     }
 
     /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return string
      */
     public function getNome(): string
@@ -72,6 +64,4 @@ class Usuario
     {
         $this->documento = $documento;
     }
-
-
 }

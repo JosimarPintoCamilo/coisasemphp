@@ -11,7 +11,6 @@ class Conexao
     private \PDO $conexao;
     private \PDOStatement $statement;
 
-
     public function prepare(string $sql, string $parametros = null): Conexao
     {
         $stmt = $this->conexao->prepare($sql);

@@ -45,23 +45,24 @@ class UsuarioRepository
         return $result->fetchAll(\PDO::FETCH_CLASS, Usuario::class);
     }
 
-    public function inserir()
+    public function inserir(Usuario $usuario): void
     {
-
+        $sql = "insert into users (nome, email, documento) values(:nome, :email, :documento)";
+        $parametros = "nome={$usuario->getNome()}&email={$usuario->getEmail()}&documento={$usuario->getDocumento()}";
+        $result = $this->conexao->prepare($sql, $parametros)->execute();
     }
 
-    public function atualizar()
+    public function atualizar(Usuario $usuario): void
     {
-
+        $sql = "update users set nome=:nome, email=:email, documento=:documento where id=:id";
+        $parametros = "id={$usuario->getId()}&nome={$usuario->getNome()}&email={$usuario->getEmail()}&documento={$usuario->getDocumento()}";
+        $result = $this->conexao->prepare($sql, $parametros)->execute();
     }
 
-    public function deletar()
+    public function deletar(int $id): void
     {
-
-    }
-
-    private function camposObrigatorios()
-    {
-
+        $sql = "delete from users where id = :id";
+        $parametros = "id={$id}";
+        $result = $this->conexao->prepare($sql, $parametros)->execute();
     }
 }
