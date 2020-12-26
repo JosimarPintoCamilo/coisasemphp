@@ -11,3 +11,22 @@ function redirect(string $url)
     $urlCompleta = url($url);
     header("Location: {$urlCompleta}");
 }
+
+function session(): \Source\Core\Session
+{
+    return new \Source\Core\Session();
+}
+
+function csrf_input(): string
+{
+    session()->gerarCSRF();
+    return "<input type='hidden' name='csrf' value='" . (session()->csrf_token ?? "") . "'/>";
+}
+
+function csrf_verify($request): bool
+{
+    if (empty(session()->csrf_token) || empty($request['csrf']) || session()->csrf_token != $request['csrf']) {
+        return false;
+    }
+    return true;
+}

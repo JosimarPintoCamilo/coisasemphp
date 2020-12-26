@@ -3,7 +3,6 @@
 
 namespace Source\Core;
 
-
 use Source\Model\Entity\Usuario;
 
 class Session
@@ -17,9 +16,9 @@ class Session
         }
     }
 
-    public function getSession()
+    public function getSession(): Session
     {
-        return (object)$_SESSION;
+        return $this;
     }
 
     public function __get($name)
@@ -64,5 +63,10 @@ class Session
     public function usuario(): Usuario
     {
         return $_SESSION["usuario"];
+    }
+
+    public function gerarCSRF(): void
+    {
+        $_SESSION["csrf_token"] = base64_encode(random_bytes(20));
     }
 }

@@ -18,8 +18,11 @@ class Conexao
         if ($parametros) {
             parse_str($parametros, $parametrosEmFormaDeArray);
             foreach ($parametrosEmFormaDeArray as $param => $valor) {
-                $tipo = (is_numeric($valor) ? \PDO::PARAM_INT : \PDO::PARAM_STR);
-                $stmt->bindValue(":{$param}", "{$valor}", $tipo);
+                if ($param == 'limit' || $param == 'offset') {
+                    $stmt->bindValue(":{$param}", "{$valor}", \PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue(":{$param}", "{$valor}", \PDO::PARAM_STR);
+                }
             }
         }
 
