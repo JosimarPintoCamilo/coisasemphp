@@ -2,7 +2,7 @@
 
 function url(string $caminho)
 {
-    return CONF_URL_BASE . "/" . ($caminho[0] == "/" ? mb_substr($caminho, 1) : $caminho);
+    return CONF_URL_BASE . "/" . ($caminho[0] == "/" ? "" : $caminho);
 }
 
 function redirect(string $url)

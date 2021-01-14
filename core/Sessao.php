@@ -1,7 +1,6 @@
 <?php
 
-
-namespace Source\Core;
+namespace Core;
 
 use Source\Model\Entity\Usuario;
 
