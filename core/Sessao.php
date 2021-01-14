@@ -5,18 +5,17 @@ namespace Source\Core;
 
 use Source\Model\Entity\Usuario;
 
-class Session
+class Sessao
 {
 
     public function __construct()
     {
         if (!session_id()) {
-            session_save_path(CONF_SESSAO_PATH);
             session_start();
         }
     }
 
-    public function getSession(): Session
+    public function getSession(): Sessao
     {
         return $this;
     }
@@ -31,13 +30,13 @@ class Session
         return $this->existeChave($name);
     }
 
-    public function inserir(string $chave, $valor): Session
+    public function inserir(string $chave, $valor): Sessao
     {
         $_SESSION[$chave] = (is_array($valor) ? (object)$valor : $valor);
         return $this;
     }
 
-    public function remover(string $chave): Session
+    public function remover(string $chave): Sessao
     {
         unset($_SESSION[$chave]);
         return $this;
@@ -48,13 +47,13 @@ class Session
         return isset($_SESSION[$chave]);
     }
 
-    public function regenerar(): Session
+    public function regenerar(): Sessao
     {
         session_regenerate_id(true);
         return $this;
     }
 
-    public function destruir(): Session
+    public function destruir(): Sessao
     {
         session_destroy();
         return $this;

@@ -12,9 +12,9 @@ function redirect(string $url)
     header("Location: {$urlCompleta}");
 }
 
-function session(): \Source\Core\Session
+function session(): \Source\Core\Sessao
 {
-    return new \Source\Core\Session();
+    return new \Source\Core\Sessao();
 }
 
 function csrf_input(): string
